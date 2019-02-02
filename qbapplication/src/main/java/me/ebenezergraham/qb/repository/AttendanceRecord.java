@@ -15,16 +15,21 @@ public class AttendanceRecord {
 	
 	private @Id @GeneratedValue
 	Long id;
-	final int userId;
-	final int qrCodeId;
-	final String time;
-	final String session;
+	String userId;
+	String qrCodeId;
+	 String time;
+	 String session;
+	String username;
 	
-	public AttendanceRecord(int userId, int qrCodeId,String session) {
+	public AttendanceRecord() {
+	}
+	
+	public AttendanceRecord(String userId, String qrCodeId, String session, String username) {
 		this.userId = userId;
 		this.qrCodeId = qrCodeId;
 		this.time = LocalTime.now().toString();
 		this.session = session;
+		this.username = username;
 	}
 	
 	public Long getId() {
@@ -35,11 +40,11 @@ public class AttendanceRecord {
 		this.id = id;
 	}
 	
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 	
-	public int getQrCodeId() {
+	public String getQrCodeId() {
 		return qrCodeId;
 	}
 	
@@ -49,5 +54,25 @@ public class AttendanceRecord {
 	
 	public String getSession() {
 		return session;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	@Override
+	public String toString() {
+		return "AttendanceRecord{" +
+				"id=" + id +
+				", userId='" + userId + '\'' +
+				", qrCodeId='" + qrCodeId + '\'' +
+				", time='" + time + '\'' +
+				", session='" + session + '\'' +
+				", username='" + username + '\'' +
+				'}';
 	}
 }

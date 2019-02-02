@@ -7,11 +7,12 @@ import me.ebenezergraham.qb.repository.AttendantRepository;
 import me.ebenezergraham.qb.services.AttendanceService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@org.springframework.web.bind.annotation.RestController
 @RequestMapping("api/v1/attendant")
 public class RestController{
 	
@@ -28,9 +29,10 @@ public class RestController{
 		this.logger = logger;
 	}
 	
-	@PostMapping("/checkin/{qrCodeId}")
+	@RequestMapping(value = "/checkin/{qrCodeId}", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	AttendanceRecord checkin(@RequestBody AttendanceRecord record, @PathVariable String qrCodeId) {
 		logger.info("QRCode In: {}", qrCodeId);
+		logger.info(record.toString());
 		return attendanceRepository.save(record);
 	}
 	

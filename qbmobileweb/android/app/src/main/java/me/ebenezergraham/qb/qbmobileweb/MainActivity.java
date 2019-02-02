@@ -1,4 +1,4 @@
-package me.ebenezergraham.qb.qbmobileapp;
+package me.ebenezergraham.qb.qbmobileweb;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("api/v1")
 public class AttendantController {
 	private final AttendantRepository repository;
 	
@@ -42,10 +43,10 @@ public class AttendantController {
 	Attendant replaceAttendant(@RequestBody Attendant newAttendant, @PathVariable Long id) {
 		
 		return repository.findById(id)
-				.map(employee -> {
-					employee.setName(newAttendant.getName());
-					employee.setRole(newAttendant.getRole());
-					return repository.save(employee);
+				.map(attendant -> {
+					attendant.setName(newAttendant.getName());
+					attendant.setRole(newAttendant.getRole());
+					return repository.save(attendant);
 				})
 				.orElseGet(() -> {
 					newAttendant.setId(id);
