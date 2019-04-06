@@ -9,6 +9,7 @@ export class AuthenticationGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return true;
     if (sessionStorage.getItem('token')) {
       return true;
     } else {

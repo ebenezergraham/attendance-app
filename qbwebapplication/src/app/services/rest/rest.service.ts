@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {SessionDetail} from '../../models/SessionDetail';
-import {User} from '../../models/User';
+import {SocialUser} from 'angularx-social-login';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class RestService {
 
   readonly api = 'api';
   readonly v1 = 'v1';
-  readonly session = `${this.api}/${this.v1}/session`;
+  readonly endpoint = `${this.api}/${this.v1}`;
 
   constructor(private http: HttpClient) {
   }
@@ -35,14 +35,21 @@ export class RestService {
   }
 
   postSession(sessionDetail: SessionDetail): Observable<any> {
-    return this.http.post(this.session,{},RestService.header()).pipe(
+    return this.http.post(this.endpoint+'/session',{},RestService.header()).pipe(
       tap(data => console.log(`posted SessionDetails`)),
       catchError(this.handleError('postSession', []))
     );
   }
 
-  login(user: User): Observable<any> {
-    return this.http.post(this.session,{},RestService.header()).pipe(
+  getAttendance(qrCodeId: String): Observable<any> {
+    return this.http.get(this.endpoint+'/attendance',RestService.header()).pipe(
+      tap(data => console.log(`posted SessionDetails`)),
+      catchError(this.handleError('postSession', []))
+    );
+  }
+
+  login(user: SocialUser): Observable<any> {
+    return this.http.post(this.endpoint,{},RestService.header()).pipe(
       tap(data => console.log(`posted login`)),
       catchError(this.handleError('login', []))
     );
