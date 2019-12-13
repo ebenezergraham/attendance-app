@@ -31,7 +31,7 @@
     "jquery": "^3.4.0",
     "ngx-bootstrap": "^3.2.0",
     "ngx-countdown": "^3.1.0",
-    "npm": "^6.8.0",
+    "npm": "^6.13.4",
     "popper.js": "^1.14.7",
     "rxjs": "~6.3.3",
     "ts-md5": "^1.2.4",
